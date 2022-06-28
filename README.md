@@ -37,7 +37,7 @@ Dado este tipo de archivo se sabe que contiene los siguientes campos con la sigu
 - `Estado`: Puede tener 3 valores pendiente, aprobado o rechazado.
 
 ### Requerimientos especificos
-2. El script de Python se debe llamar listado_cheques.py
+1. El script de Python se debe llamar listado_cheques.py
 2. El orden de los argumentos son los siguientes:
 a. Nombre del archivo csv.
 b. DNI del cliente donde se filtraran.
