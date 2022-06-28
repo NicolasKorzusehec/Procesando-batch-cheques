@@ -1,3 +1,10 @@
+pendiente readme:
+corregir   
+- [Built with](#built-with)
+- [Pending to ADD](#pending-to-add )
+- [Useful resources](#useful-resources)
+
+
 # Procesando-batch-cheques
 This is a app proposed by the school of innovation of ITBA at the SPRINT 4 of their fullstack developer course.
 Se requiere consultar los cheques que tiene emitidos y depositados en sus cuentas un determinado cliente, pudiendo estar estos pendientes, aprobado o rechazado. Dicha informacion es extraida de un archivo csv.
