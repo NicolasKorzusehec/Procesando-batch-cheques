@@ -16,10 +16,14 @@ Acontinuacion se le solicitara informacion para filtrar un archivo csv y de esa 
     salida(arreglo)
 
 def ejecucion(arreglo):
-    print (arreglo)
+    archivo = open(arreglo[0])
+    lineas = archivo.readlines()
+    print (lineas)
+    archivo.close()    
     print ("Pendiente programar ejecucion")
 
 if __name__ == '__main__':
     filtros = []
     filtrosCsv(filtros)
+    print(filtros)
     ejecucion(filtros)
