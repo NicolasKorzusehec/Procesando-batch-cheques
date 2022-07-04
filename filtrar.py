@@ -1,5 +1,7 @@
 def nombreArchivo(array):
-    print("Ingrese el nombre del archivo a filtrar: ")
+    estado = False
+    print("""Ingrese el nombre del archivo a filtrar: 
+    >>>Solo debe escribir el nombre mas no la terminacion .csv""")
     array.append (input ())
 
 def ingresoDni(array):
