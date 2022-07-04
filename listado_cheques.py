@@ -28,7 +28,7 @@ def ejecucion(arreglo):
 
 #Estructura que me sirve para escribir un archivo csv.
 def salidaPrograma():
-    file = open("salida.csv", "w")
+    file = open("Resultados/salida.csv", "w")
     file.write("palabra1,palabra2,palabra3")
     file.close()
     file = open ("salida.csv", "r")
