@@ -72,5 +72,23 @@ def fechaPago(array):
     array.append("Pendiente")
 
 def salida(array):
-    print("Pendiente programar salida")
-    array.append("Pendiente")
+    estado = False
+    print ("""
+Como quisiera visualizar el resultado?
+>>> Ingrese el numero de su respuesta
+    1. Por pantalla
+    2. En otro archivo csv
+    """)
+    while estado != True:
+        tipo = input()
+        if tipo.isdigit():
+            if int(tipo) == 1:
+                array.append("salidaPantalla")
+                estado = True
+            elif int(tipo) == 2:
+                array.append ("salidaArchivo")
+                estado = True
+            else:
+                print("Esa opcion no es correcta.")
+        else:
+            print("Esa opcion no es correcta.")
