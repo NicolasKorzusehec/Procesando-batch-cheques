@@ -1,5 +1,5 @@
+# Defino librerias a utilizar.
 import csv
-from shutil import SpecialFileError
 
 from filtrar import *
 
@@ -24,7 +24,6 @@ def ejecucion(arreglo):
     print (lineas)
     archivo.close()    
     print ("Pendiente programar ejecucion")
-
 
 #Estructura que me sirve para escribir un archivo csv.
 def salidaPrograma():
