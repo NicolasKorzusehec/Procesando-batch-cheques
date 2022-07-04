@@ -19,10 +19,11 @@ Acontinuacion se le solicitara informacion para filtrar un archivo csv y de esa 
     salida(arreglo)
 
 def ejecucion(arreglo):
-    archivo = open(arreglo[0])
-    lineas = archivo.readlines()
-    print (lineas)
-    archivo.close()    
+    file = open(arreglo[0])
+    csvfile = csv.reader(file)
+    for row in csvfile:
+        print(row)
+    print (csvfile)
     print ("Pendiente programar ejecucion")
 
 #Estructura que me sirve para escribir un archivo csv.
