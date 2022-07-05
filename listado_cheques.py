@@ -26,9 +26,9 @@ if __name__ == '__main__':
 
     # Itera en cada fila util del archivo a filtrar creando un objeto que se incluye en la lista 'objetoDatos' para trabajarla facilmente posteriormente.
     crearDicc(archivoCheques, objDatos)
-
-    # Crea un obj con todas las decisiones deseados por el usuario.
-    decidir(decisiones)
+    
+    # Crea un obj con todas las decisiones del usuario. Incorporo tambien objDatos para la ejecucion de la funcion "ingresoDni()"
+    decidir(decisiones, objDatos)
 
     #Define un objeto especifico que contiene unicamente los filtros.
     filtrar(decisiones, filtro)

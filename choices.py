@@ -2,14 +2,14 @@ import csv
 
 # Esta funcion desacoplada me permite crear los filtros de forma indepediente en el script `filtrar.py` bajo la premisa de incluir el arreglo que contiene los filtros como parametro de las mismas, logrando asi mejorar sus especificidades facilmente. Inclusive el usuario podria decidir que filtros aplicar.
 # !!! Se debe respetar la posicion  de la funcion 'nombreArchivo()' y 'salida()' para no romper el codigo en su ejecucion posteriormente!!!
-def decidir(obj):
+def decidir(obj, datos):
     print ("""
 Acontinuacion se le solicitara informacion para filtrar un archivo csv y de esa forma visualizar toda la informacion de los cheques emitidos o depositados por el cliente en cuestion.
 """)
     # Dispondra de la informacion en el siguiente orden.
     # Salida buscada, DNI del cliente, tipo de cheque, estado del cheque, fecha origen, fecha pago.
     salida(obj)
-    ingresoDni(obj)
+    ingresoDni(obj, datos)
     tipoCheque(obj)
     estadoCheque(obj)
     #fechaOrigen(obj)
@@ -54,16 +54,36 @@ Como quisiera visualizar el resultado?
         else:
             print("Esa opcion no es correcta.")
 
-def ingresoDni(obj):
+# Presenta en pantalla las opciones de dni disponibles, facilitando el uso de la aplicacion considerando que se deja de lado el error humano al tipiar el numero.
+def ingresoDni(obj, datos):
+    dniHabilitados = {}
+    dniDisponibles(dniHabilitados, datos)
+    print("""
+>>> Se inspecciono el archivo para determinar todos los DNIs disponibles.
+Seleccione el DNI del cliente:""")
+    for choice in dniHabilitados:
+        print(choice, ": ", dniHabilitados[choice])
     estado = False
-    print ("Ingrese el DNI del cliente: ")
     while estado != True:
-        dni = input ()
-        if dni.isdigit():
-            obj["DNI"] = dni
-            estado = True
-        else:
-            print ("Solo se aceptan enteros sin puntos, comas, ni espacios")
+        try:
+            indice = input ()
+            if indice.isdigit():
+                obj["DNI"] = dniHabilitados[indice]
+                estado = True
+            else:
+                print ("Solo se aceptan enteros sin puntos, comas, ni espacios.")
+        except:
+            print("Esa opcion no esta disponible.")
+            estado = False
+# alista todos los dnis unicos presentes en el archivo csv de origen
+def dniDisponibles(habilitados, datos):
+    dniContados = []
+    n = 1
+    for row in datos:
+        if dniContados.count(row["DNI"]) == 0:
+            habilitados[f"{n}"] = row["DNI"]
+            dniContados.append (row["DNI"])
+            n += 1
 
 def tipoCheque(obj):
     estado = False
