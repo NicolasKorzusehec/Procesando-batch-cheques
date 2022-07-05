@@ -25,6 +25,7 @@ def readFile(datos, array):
     print(csvfile)
     for row in csvfile:
         datos.append(row)
+    file.close()
 
 # Toma la decision sobre que tipo de salida del resultado realizar
 def output(results, array):
@@ -47,6 +48,7 @@ def salidaArchivo(resultados):
     print (csvsalida)
     for row in csvsalida: print(row)
     print (resultados)
+    file.close()
 
 def salidaPantalla(resultados):
     print ("Pendiente terminal")
@@ -64,7 +66,7 @@ if __name__ == '__main__':
 
     readFile(archivoCheques, filtros)
     print (archivoCheques)
-    
+
     output(archivoResultado, filtros)
     salidaArchivo(archivoResultado)
     salidaPantalla(archivoResultado)

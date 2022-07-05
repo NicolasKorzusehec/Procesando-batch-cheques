@@ -12,6 +12,7 @@ def nombreArchivo(array):
             file = open("src/"+nombreArchivo, "r")
             csvfile = csv.reader(file)
             print (csvfile)
+            file.close()
             array.append ("src/"+nombreArchivo)
             estado = True
         except FileNotFoundError:
