@@ -72,6 +72,7 @@ def salidaArchivo(resultados):
     file.write(contenido) #Resultados
     file.close()
 
+# Imprime en consola los resultados obtenidos.
 def salidaPantalla(resultados):
     print ("""
 Los resultados obtenidos fueron los siguientes: """)
