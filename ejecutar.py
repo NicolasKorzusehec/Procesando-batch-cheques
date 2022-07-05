@@ -1,9 +1,11 @@
 import csv
 
-# Esta funcion guarda el archivo como csv en la variable archivoCheques para luego ser trabajada dese la misma
-def readFile(datos, array):
-    file = open(array[0])
-    print(file)
+from choices import nombreArchivo
+
+# Esta funcion guarda el archivo como csv en la variable archivoCheques para luego ser trabajada desde la misma
+def readFile(datos, obj):
+    file = open(obj["archivo"])
+    #print(file)
     csvfile = csv.reader(file)
     for row in csvfile:
         if row != []:
@@ -23,16 +25,33 @@ def crearDicc(data, diccionario):
             i += 1
         diccionario.append (object)
 
+# Filtra el objeto creado a partir del csv con las decisiones del usuario de la funcion 'filtrarCsv()', luego incluye esos resultados en el objeto resultados.
+def filtrar(choices, filtros):
+    for key in choices:
+        if key != "archivo" and key != "salida":
+            filtros[key] = choices[key]
+    print("Los filtros a usar son: ", filtros)
+
+# Itera por los pares clave/valor el objeto filtro y lo compara con el mismo par de cada caso. En caso de darse una disparidad se cabia el estado a false y no se incluye esa fila en los resultados
+def filtradoDicc(data, filtros, results):
+    for row in data:
+        estado = True
+        for key in filtros:
+            if row[key] != filtros[key]:
+                estado = False
+        if estado:
+            results.append(row)
+    if results == {}:
+        print ("No hay transacciones con esas caracteristicas.")
+        return main()
 
 
 
 
 
-
-# Toma la decision sobre que tipo de salida del resultado realizar
-def output(results, array):
-    choice = array[1]
-    print(choice)
+# Toma la decision sobre que tipo de salida del resultado realizar.
+def output(results, obj):
+    choice = obj["salida"]
     if choice == "pantalla":
         salidaPantalla(results)
     elif choice == "archivo":
@@ -42,16 +61,26 @@ def output(results, array):
 
 #Estructura que me sirve para escribir un archivo csv. Podria plantearse la salida en la carpeta descargas.
 def salidaArchivo(resultados):
-    file = open("Resultados/salida.csv", "w") #dni
-    file.write("palabra1,palabra2,palabra3") #Resultados
-    file.close()
-    file = open ("Resultados/salida.csv", "r")
-    csvsalida = csv.reader(file)
-    print (csvsalida)
-    for row in csvsalida: print(row)
-    print (resultados)
+    contenido = ""
+    header = []
+    for key in resultados[0]:
+        header.append(key)
+    contenido += header
+    for row in resultados:
+        bodyRow = []
+        for key in row:
+            bodyRow.append(row[key])
+        contenido += bodyRow
+    nombresalida = input("Nombre archivo salida: ")
+    file = open(f"Resultados/{nombresalida}.csv", "w") #dni
+    file.write(contenido) #Resultados
     file.close()
 
 def salidaPantalla(resultados):
-    print ("Pendiente terminal")
-    print (resultados)
+    print ("""
+Los resultados obtenidos fueron los siguientes: """)
+    print ("-----------------------------------------")
+    for row in resultados:
+        for key in row:
+            print(key, ":", row[key])
+        print ("-----------------------------------------")

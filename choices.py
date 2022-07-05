@@ -2,28 +2,26 @@ import csv
 
 # Esta funcion desacoplada me permite crear los filtros de forma indepediente en el script `filtrar.py` bajo la premisa de incluir el arreglo que contiene los filtros como parametro de las mismas, logrando asi mejorar sus especificidades facilmente. Inclusive el usuario podria decidir que filtros aplicar.
 # !!! Se debe respetar la posicion  de la funcion 'nombreArchivo()' y 'salida()' para no romper el codigo en su ejecucion posteriormente!!!
-def filtrosCsv(obj):
+def decidir(obj):
     print ("""
 Acontinuacion se le solicitara informacion para filtrar un archivo csv y de esa forma visualizar toda la informacion de los cheques emitidos o depositados por el cliente en cuestion.
 """)
     # Dispondra de la informacion en el siguiente orden.
-    # Nombre archivo, salida buscada, DNI del cliente, tipo de cheque, estado del cheque, fecha origen, fecha pago.
-    nombreArchivo(obj)
+    # Salida buscada, DNI del cliente, tipo de cheque, estado del cheque, fecha origen, fecha pago.
     salida(obj)
     ingresoDni(obj)
     tipoCheque(obj)
     estadoCheque(obj)
-    fechaOrigen(obj)
-    fechaPago(obj)
+    #fechaOrigen(obj)
+    #fechaPago(obj)
 
 def nombreArchivo(obj):
     estado = False
     print("""Ingrese el nombre del archivo a filtrar:
-    Ejemplo: test.csv (disponible)
-    ***Este campo es obligatorio.""")
+    Ejemplo: test.csv (disponible)""")
     while estado != True:
         try:
-            print(""">>>Se requiere colocar el archivo a verificar dentro de la carpeta src perteneciente al programa.""")
+            print(""">>> Se requiere colocar el archivo a verificar dentro de la carpeta src perteneciente al programa.""")
             nombreArchivo = input()
             file = open("src/"+nombreArchivo, "r")
             file.close()
@@ -62,7 +60,7 @@ def ingresoDni(obj):
     while estado != True:
         dni = input ()
         if dni.isdigit():
-            obj["DNI"] = int (dni)
+            obj["DNI"] = dni
             estado = True
         else:
             print ("Solo se aceptan enteros sin puntos, comas, ni espacios")
@@ -127,5 +125,5 @@ def fechaOrigen(obj):
 
 def fechaPago(obj):
     print("Pendiente programar fechaPago")
-    obj["Fecha"] ="Pendiente"
+    obj["FechaPago"] ="Pendiente"
 
