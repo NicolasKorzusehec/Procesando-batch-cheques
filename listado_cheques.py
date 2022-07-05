@@ -1,72 +1,38 @@
 # Defino librerias a utilizar.
 import csv
-from filtrar import *
+from filtrar import * # Todas funciones aplicadas para crear el array con las desiciones iniciales del usuario. Involucra la primer parte del programa.
+from ejecutar import * # Todas las funciones usadas por el programa para ejecutarse. Involucra la segunda parte del programa. 
+#Desde la obtencion del archivo csv y su conversion a un objeto utilizable, hasta su posterior salida. Depende de las decisiones tomadas por el usuario.
 
-# Esta funcion desacoplada me permite crear los filtros de forma indepediente en el script `filtrar.py` bajo la premisa de incluir el arreglo que contiene los filtros como parametro de las mismas, logrando asi mejorar sus especificidades facilmente. Inclusive el usuario podria decidir que filtros aplicar.
-def filtrosCsv(arreglo):
-    print ("""
-Acontinuacion se le solicitara informacion para filtrar un archivo csv y de esa forma visualizar toda la informacion de los cheques emitidos o depositados por el cliente en cuestion.
-""")
-    # Dispondra de la informacion en el siguiente orden.
-    # Nombre archivo, DNI del cliente, tipo de cheque, estado del cheque, fecha origen, fecha pago, salida buscada.
-    nombreArchivo(arreglo)
-    ingresoDni(arreglo)
-    tipoCheque(arreglo)
-    estadoCheque(arreglo)
-    fechaOrigen(arreglo)
-    fechaPago(arreglo)
-    salida(arreglo)
+# Defino variables.
+filtros = [] # Decisiones
+archivoCheques = [] # En bruto
+objetoDatos=[] # Objeto utilizable derivado del archivoCheques
+resultados = [] # Objeto ya filtrado y dispuesto para su salida
 
-# Esta funcion guarda el archivo como csv en la variable archivoCheques para luego ser trabajada dese la misma
-def readFile(datos, array):
-    file = open(array[0])
-    print(file)
-    csvfile = csv.reader(file)
-    print(csvfile)
-    for row in csvfile:
-        datos.append(row)
-    file.close()
 
-# Toma la decision sobre que tipo de salida del resultado realizar
-def output(results, array):
-    choice = array[6]
-    print(choice)
-    if choice == "pantalla":
-        salidaPantalla(results)
-    elif choice == "archivo":
-        salidaArchivo(results)
-    else:
-        print ("Pendiente")
+def filtradoDicc(diccionario, filtros, resultados):
+    print("hi")
 
-#Estructura que me sirve para escribir un archivo csv. Podria plantearse la salida en la carpeta descargas.
-def salidaArchivo(resultados):
-    file = open("Resultados/salida.csv", "w")
-    file.write("palabra1,palabra2,palabra3") #Resultados
-    file.close()
-    file = open ("Resultados/salida.csv", "r")
-    csvsalida = csv.reader(file)
-    print (csvsalida)
-    for row in csvsalida: print(row)
-    print (resultados)
-    file.close()
-
-def salidaPantalla(resultados):
-    print ("Pendiente terminal")
-    print (resultados)
 
 if __name__ == '__main__':
     print ("""
     El programa ofrece una prueba con el archivo "test.csv" incluido""")
-    filtros = []
-    archivoCheques = []
-    archivoResultado = []
     
+    # Crea un array con todos los filtros deseados por el usuario.
     filtrosCsv(filtros)
     print(filtros)
 
+    # Recibe el nombre del archivo desde el primer elemento del array 'filtros' y lo asigna a la variable 'archivoCheques'  para poder trabajar sobre el.
     readFile(archivoCheques, filtros)
-    print (archivoCheques)
 
-    output(archivoResultado, filtros)
-    salidaArchivo(archivoResultado)
-    salidaPantalla(archivoResultado)
+    # Itera en cada fila util del archivo a filtrar creando un objeto que se incluye en la lista 'objetoDatos' para trabajarla facilmente posteriormente.
+    crearDicc(archivoCheques, objetoDatos)
+    for obj in objetoDatos:
+        print (obj)
+
+    # Filtra el objeto creado a partir del csv con las deciciones del usuario de la funcion 'filtrarCsv()', luego incluye esos resultados en el objeto resultados.
+    filtradoDicc(objetoDatos, filtros, resultados)
+
+    # Recibe la decision del usuario sobre como presentar los resultados e invoca la funcion correspondiente a la misma.
+    output(resultados, filtros)

@@ -1,5 +1,21 @@
 import csv
 
+# Esta funcion desacoplada me permite crear los filtros de forma indepediente en el script `filtrar.py` bajo la premisa de incluir el arreglo que contiene los filtros como parametro de las mismas, logrando asi mejorar sus especificidades facilmente. Inclusive el usuario podria decidir que filtros aplicar.
+# !!! Se debe respetar la posicion  de la funcion 'nombreArchivo()' y 'salida()' para no romper el codigo en su ejecucion posteriormente!!!
+def filtrosCsv(arreglo):
+    print ("""
+Acontinuacion se le solicitara informacion para filtrar un archivo csv y de esa forma visualizar toda la informacion de los cheques emitidos o depositados por el cliente en cuestion.
+""")
+    # Dispondra de la informacion en el siguiente orden.
+    # Nombre archivo, salida buscada, DNI del cliente, tipo de cheque, estado del cheque, fecha origen, fecha pago.
+    nombreArchivo(arreglo)
+    salida(arreglo)
+    ingresoDni(arreglo)
+    tipoCheque(arreglo)
+    estadoCheque(arreglo)
+    fechaOrigen(arreglo)
+    fechaPago(arreglo)
+
 def nombreArchivo(array):
     estado = False
     print("""Ingrese el nombre del archivo a filtrar:
@@ -10,8 +26,6 @@ def nombreArchivo(array):
             print(""">>>Se requiere colocar el archivo a verificar dentro de la carpeta src perteneciente al programa.""")
             nombreArchivo = input()
             file = open("src/"+nombreArchivo, "r")
-            csvfile = csv.reader(file)
-            print (csvfile)
             file.close()
             array.append ("src/"+nombreArchivo)
             estado = True
@@ -19,6 +33,28 @@ def nombreArchivo(array):
             print ("""
             No se ha encontrado el archivo. Vuelve a intentar.""")
             continue
+
+def salida(array):
+    estado = False
+    print ("""
+Como quisiera visualizar el resultado?
+>>> Ingrese el numero de su respuesta
+    1. Por pantalla
+    2. En otro archivo csv
+    """)
+    while estado != True:
+        salida = input()
+        if salida.isdigit():
+            if int(salida) == 1:
+                array.append("pantalla")
+                estado = True
+            elif int(salida) == 2:
+                array.append ("archivo")
+                estado = True
+            else:
+                print("Esa opcion no es correcta.")
+        else:
+            print("Esa opcion no es correcta.")
 
 def ingresoDni(array):
     estado = False
@@ -87,24 +123,3 @@ def fechaPago(array):
     print("Pendiente programar fechaPago")
     array.append("Pendiente")
 
-def salida(array):
-    estado = False
-    print ("""
-Como quisiera visualizar el resultado?
->>> Ingrese el numero de su respuesta
-    1. Por pantalla
-    2. En otro archivo csv
-    """)
-    while estado != True:
-        salida = input()
-        if salida.isdigit():
-            if int(salida) == 1:
-                array.append("pantalla")
-                estado = True
-            elif int(salida) == 2:
-                array.append ("archivo")
-                estado = True
-            else:
-                print("Esa opcion no es correcta.")
-        else:
-            print("Esa opcion no es correcta.")
