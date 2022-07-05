@@ -43,11 +43,6 @@ def filtradoDicc(data, filtros, results):
             results.append(row)
     if results == {}:
         print ("No hay transacciones con esas caracteristicas.")
-        return main()
-
-
-
-
 
 # Toma la decision sobre que tipo de salida del resultado realizar.
 def output(results, obj):
@@ -59,20 +54,21 @@ def output(results, obj):
     else:
         print ("Pendiente")
 
-#Estructura que me sirve para escribir un archivo csv. Podria plantearse la salida en la carpeta descargas.
+#Estructura que transforma los resultados en un estring, luego los incluye en un archio csv.
 def salidaArchivo(resultados):
     contenido = ""
-    header = []
-    for key in resultados[0]:
-        header.append(key)
-    contenido += header
+    headerReference = resultados[0]
+    for key in headerReference:
+        contenido += key + ","
+    contenido = contenido[:len(contenido)-1]
+    contenido += "\n"
     for row in resultados:
-        bodyRow = []
         for key in row:
-            bodyRow.append(row[key])
-        contenido += bodyRow
+            contenido += row[key] + ","
+        contenido = contenido[:len(contenido)-1]
+        contenido += "\n"
     nombresalida = input("Nombre archivo salida: ")
-    file = open(f"Resultados/{nombresalida}.csv", "w") #dni
+    file = open(f"Resultados/{nombresalida}.csv", "w") 
     file.write(contenido) #Resultados
     file.close()
 
