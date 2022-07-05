@@ -1,6 +1,6 @@
 import csv
 
-from choices import nombreArchivo
+from choices import *
 
 # Esta funcion guarda el archivo como csv en la variable archivoCheques para luego ser trabajada desde la misma
 def readFile(datos, obj):
@@ -26,7 +26,7 @@ def crearDicc(data, diccionario):
         diccionario.append (object)
 
 # Filtra el objeto creado a partir del csv con las decisiones del usuario de la funcion 'filtrarCsv()', luego incluye esos resultados en el objeto resultados.
-def filtrar(choices, filtros):
+def crearFiltros(choices, filtros):
     for key in choices:
         if key != "archivo" and key != "salida":
             filtros[key] = choices[key]

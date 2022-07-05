@@ -1,0 +1,1 @@
+Esta carpeta almacena todos los resultados que son impresos en un nuevo archivo .csv

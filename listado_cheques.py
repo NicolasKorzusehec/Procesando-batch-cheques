@@ -19,19 +19,19 @@ if __name__ == '__main__':
     print ("""
 >>> El programa ofrece una prueba con el archivo "test.csv" incluido""")
     
-    nombreArchivo(archivoOrigen)
+    buscarArchivo(archivoOrigen)
     
     # Recibe el nombre del archivo desde el primer elemento del array 'filtros' y lo asigna a la variable 'archivoCheques'  para poder trabajar sobre el.
     readFile(archivoCheques, archivoOrigen)
 
     # Itera en cada fila util del archivo a filtrar creando un objeto que se incluye en la lista 'objetoDatos' para trabajarla facilmente posteriormente.
     crearDicc(archivoCheques, objDatos)
-    
+
     # Crea un obj con todas las decisiones del usuario. Incorporo tambien objDatos para la ejecucion de la funcion "ingresoDni()"
     decidir(decisiones, objDatos)
 
     #Define un objeto especifico que contiene unicamente los filtros.
-    filtrar(decisiones, filtro)
+    crearFiltros(decisiones, filtro)
 
     # Filtra el objeto creado a partir del csv con las deciciones del usuario de la funcion 'filtrarCsv()', luego incluye esos resultados en el objeto resultados.
     filtradoDicc(objDatos, filtro, resultados)

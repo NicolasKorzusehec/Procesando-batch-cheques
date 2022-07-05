@@ -1,5 +1,3 @@
-import csv
-
 # Esta funcion desacoplada me permite crear los filtros de forma indepediente en el script `filtrar.py` bajo la premisa de incluir el arreglo que contiene los filtros como parametro de las mismas, logrando asi mejorar sus especificidades facilmente. Inclusive el usuario podria decidir que filtros aplicar.
 # !!! Se debe respetar la posicion  de la funcion 'nombreArchivo()' y 'salida()' para no romper el codigo en su ejecucion posteriormente!!!
 def decidir(obj, datos):
@@ -15,7 +13,7 @@ Acontinuacion se le solicitara informacion para filtrar un archivo csv y de esa 
     #fechaOrigen(obj)
     #fechaPago(obj)
 
-def nombreArchivo(obj):
+def buscarArchivo(obj):
     estado = False
     print("""Ingrese el nombre del archivo a filtrar:
     Ejemplo: test.csv (disponible)""")
@@ -75,6 +73,7 @@ Seleccione el DNI del cliente:""")
         except:
             print("Esa opcion no esta disponible.")
             estado = False
+
 # alista todos los dnis unicos presentes en el archivo csv de origen
 def dniDisponibles(habilitados, datos):
     dniContados = []
