@@ -1,8 +1,23 @@
+import csv
+
 def nombreArchivo(array):
     estado = False
-    print("""Ingrese el nombre del archivo a filtrar: 
-    >>>Solo debe escribir el nombre mas no la terminacion .csv""")
-    array.append (input ())
+    print("""Ingrese el nombre del archivo a filtrar:
+    Ejemplo: test.csv (disponible)
+    ***Este campo es obligatorio.""")
+    while estado != True:
+        try:
+            print(""">>>Se requiere colocar el archivo a verificar dentro de la carpeta src perteneciente al programa.""")
+            nombreArchivo = input()
+            file = open("src/"+nombreArchivo, "r")
+            csvfile = csv.reader(file)
+            print (csvfile)
+            array.append ("src/"+nombreArchivo)
+            estado = True
+        except FileNotFoundError:
+            print ("""
+            No se ha encontrado el archivo. Vuelve a intentar.""")
+            continue
 
 def ingresoDni(array):
     estado = False
@@ -80,13 +95,13 @@ Como quisiera visualizar el resultado?
     2. En otro archivo csv
     """)
     while estado != True:
-        tipo = input()
-        if tipo.isdigit():
-            if int(tipo) == 1:
-                array.append("salidaPantalla")
+        salida = input()
+        if salida.isdigit():
+            if int(salida) == 1:
+                array.append("pantalla")
                 estado = True
-            elif int(tipo) == 2:
-                array.append ("salidaArchivo")
+            elif int(salida) == 2:
+                array.append ("archivo")
                 estado = True
             else:
                 print("Esa opcion no es correcta.")

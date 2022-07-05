@@ -1,6 +1,5 @@
 # Defino librerias a utilizar.
 import csv
-
 from filtrar import *
 
 # Esta funcion desacoplada me permite crear los filtros de forma indepediente en el script `filtrar.py` bajo la premisa de incluir el arreglo que contiene los filtros como parametro de las mismas, logrando asi mejorar sus especificidades facilmente. Inclusive el usuario podria decidir que filtros aplicar.
@@ -19,43 +18,53 @@ Acontinuacion se le solicitara informacion para filtrar un archivo csv y de esa 
     salida(arreglo)
 
 # Esta funcion guarda el archivo como csv en la variable archivoCheques para luego ser trabajada dese la misma
-def readFile(csvfile, array):
+def readFile(datos, array):
     file = open(array[0])
     print(file)
     csvfile = csv.reader(file)
     print(csvfile)
     for row in csvfile:
-        print (row)
+        datos.append(row)
 
 # Toma la decision sobre que tipo de salida del resultado realizar
 def output(results, array):
     choice = array[6]
     print(choice)
-    if choice == "salidaPantalla" or choice == "salidaArchivo":
-        choice (results) 
+    if choice == "pantalla":
+        salidaPantalla(results)
+    elif choice == "archivo":
+        salidaArchivo(results)
     else:
         print ("Pendiente")
 
 #Estructura que me sirve para escribir un archivo csv. Podria plantearse la salida en la carpeta descargas.
 def salidaArchivo(resultados):
     file = open("Resultados/salida.csv", "w")
-    file.write("palabra1,palabra2,palabra3")
+    file.write("palabra1,palabra2,palabra3") #Resultados
     file.close()
-    file = open ("salida.csv", "r")
+    file = open ("Resultados/salida.csv", "r")
     csvsalida = csv.reader(file)
     print (csvsalida)
     for row in csvsalida: print(row)
+    print (resultados)
 
-def salidaPantalla():
+def salidaPantalla(resultados):
     print ("Pendiente terminal")
+    print (resultados)
 
 if __name__ == '__main__':
+    print ("""
+    El programa ofrece una prueba con el archivo "test.csv" incluido""")
     filtros = []
     archivoCheques = []
     archivoResultado = []
+    
     filtrosCsv(filtros)
     print(filtros)
+
     readFile(archivoCheques, filtros)
+    print (archivoCheques)
+    
     output(archivoResultado, filtros)
-    salidaArchivo()
-    salidaPantalla()
+    salidaArchivo(archivoResultado)
+    salidaPantalla(archivoResultado)
