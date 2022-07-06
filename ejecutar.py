@@ -21,8 +21,13 @@ def crearDicc(data, diccionario):
         object = {}
         i = 0
         while i < len (categorias):
-            object[categorias[i]]= row[i]
-            i += 1
+            if categorias[i] == "Valor":
+                value = float(row[i])
+                object[categorias[i]]= value
+                i += 1
+            else:
+                object[categorias[i]]= row[i]
+                i += 1
         diccionario.append (object)
 
 # Filtra el objeto creado a partir del csv con las decisiones del usuario de la funcion 'filtrarCsv()', luego incluye esos resultados en el objeto resultados.
@@ -77,13 +82,16 @@ def nombrandoArchivo(results):
     nameArchivo = dniUso + "-" + timest + ".csv"
     print("El nombre del archivo es ", nameArchivo)
     path = "Resultados/" + nameArchivo
-    #entradaNombre = input("Nombre archivo salida: ") + ".csv"
-    #path = "Resultados/" + entradaNombre
+    print(msgPosArchivo(dniUso,timest))
     return path
 
 def timestampActual():
     print("Pendiente")
     return "Pendiente"
+
+def msgPosArchivo(dni, tiempo):
+    return f"Se imprimio un .csv en la carpeta resultados. La misma refiere  al dni: {dni} y el timestamp: {tiempo}."
+
 
 # Imprime en consola los resultados obtenidos.
 def salidaPantalla(resultados):
