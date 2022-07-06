@@ -79,7 +79,6 @@ def salidaArchivo(resultados):
     file.write(contenido) #Resultados
     file.close()
 
-
 def nombrandoArchivo(results):
     dniUso = results[0]["DNI"]
     timest = str (int (datetime.now ().timestamp ()))
