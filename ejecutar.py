@@ -65,10 +65,25 @@ def salidaArchivo(resultados):
             contenido += row[key] + ","
         contenido = contenido[:len(contenido)-1]
         contenido += "\n"
-    nombresalida = input("Nombre archivo salida: ")
-    file = open(f"Resultados/{nombresalida}.csv", "w") 
+    srcOut = nombrandoArchivo(resultados)
+    file = open(srcOut, "w") 
     file.write(contenido) #Resultados
     file.close()
+
+
+def nombrandoArchivo(results):
+    dniUso = results[0]["DNI"]
+    timest = timestampActual()
+    nameArchivo = dniUso + "-" + timest + ".csv"
+    print("El nombre del archivo es ", nameArchivo)
+    path = "Resultados/" + nameArchivo
+    #entradaNombre = input("Nombre archivo salida: ") + ".csv"
+    #path = "Resultados/" + entradaNombre
+    return path
+
+def timestampActual():
+    print("Pendiente")
+    return "Pendiente"
 
 # Imprime en consola los resultados obtenidos.
 def salidaPantalla(resultados):

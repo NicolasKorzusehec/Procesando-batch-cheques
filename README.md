@@ -23,7 +23,8 @@ Dado este tipo de archivo se sabe que contiene los siguientes campos con la sigu
 - `FechaOrigen`: Fecha de emisión: (En timestamp)
 - `FechaPago`: Fecha de pago o cobro del cheque (En timestamp)
 - `DNI`: String con DNI del cliente donde se permite identificarlo.
-- `Estado`: Puede tener 3 valores pendiente, aprobado o rechazado.
+- `Estado`: Puede tener 3 valores 'pendiente', 'aprobado' o 'rechazado'.
+- `Tipo`: Puede tener 2 valores 'emitido' o 'depositado'.
 
 ### Requerimientos especificos
 1. El script de Python se debe llamar `listado_cheques.py`
