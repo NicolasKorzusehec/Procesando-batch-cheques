@@ -16,8 +16,8 @@ Acontinuacion se le solicitara informacion para filtrar un archivo csv y de esa 
 def buscarArchivo(obj):
     estado = False
     print("""Ingrese el nombre del archivo a filtrar:
-    Ejemplo: longtest.csv (EN DESARROLLO)
-                shortest.csv(RECOMENDADA)""")
+    Ejemplo: longtest.csv (RECOMENDADA)
+    """)
     while estado != True:
         try:
             print(""">>> Se requiere colocar el archivo a verificar dentro de la carpeta src perteneciente al programa.""")
@@ -98,10 +98,10 @@ El cheque fue:
         tipo = input()
         if tipo.isdigit():
             if int(tipo) == 1:
-                obj["Tipo"] = "Emitido"
+                obj["Tipo"] = "EMITIDO"
                 estado = True
             elif int(tipo) == 2:
-                obj["Tipo"] = "Depositado"
+                obj["Tipo"] = "DEPOSITADO"
                 estado = True
             elif int(tipo) == 3:
                 return
@@ -124,13 +124,13 @@ Cual es el estado del cheque:
         tipo = input()
         if tipo.isdigit():
             if int(tipo) == 1:
-                obj["Estado"] = "Pendiente"
+                obj["Estado"] = "PENDIENTE"
                 estado = True
             elif int(tipo) == 2:
-                obj["Estado"] = "Aprobado"
+                obj["Estado"] = "APROBADO"
                 estado = True
             elif int(tipo) == 3:
-                obj["Estado"] = "Rechazado"
+                obj["Estado"] = "RECHAZADO"
                 estado = True
             elif int(tipo) == 4:
                 return

@@ -41,8 +41,6 @@ def filtradoDicc(data, filtros, results):
                 estado = False
         if estado:
             results.append(row)
-    if results == {}:
-        print ("No hay transacciones con esas caracteristicas.")
 
 # Toma la decision sobre que tipo de salida del resultado realizar.
 def output(results, obj):
@@ -74,10 +72,13 @@ def salidaArchivo(resultados):
 
 # Imprime en consola los resultados obtenidos.
 def salidaPantalla(resultados):
-    print ("""
-Los resultados obtenidos fueron los siguientes: """)
-    print ("-----------------------------------------")
-    for row in resultados:
-        for key in row:
-            print(key, ":", row[key])
+    if resultados != []:
+        print ("""
+    Los resultados obtenidos fueron los siguientes: """)
         print ("-----------------------------------------")
+        for row in resultados:
+            for key in row:
+                print(key, ":", row[key])
+            print ("-----------------------------------------")
+    else:
+        print ("No hay transacciones con esas caracteristicas.")
