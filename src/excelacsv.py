@@ -3,6 +3,7 @@
 import csv
 
 ubicacionOrigen = "src/extension.csv" # Es el exportado desde excel con separador de ";"
+ubicacionFinal = "src/longtest.csv"
 archivoBruto = []
 archivoSolucionado = []
 
@@ -47,7 +48,7 @@ def salidaArchivo(resultados):
 
 
 if __name__ == "__main__":
-    buscarArchivo(ubicacionOrigen) # Se debe definir al inicio del script.
+    buscarArchivo(ubicacionFinal) # Se debe definir al inicio del script.
     readFile(archivoBruto, ubicacionOrigen)
     print(archivoBruto)
     print ("Este es el archivo origen")
