@@ -94,7 +94,8 @@ def timestampActual():
     return ts
 
 def msgPosArchivo(dni, tiempo):
-    return f"Se imprimio un .csv en la carpeta `Resultados`. La misma refiere  al dni: {dni} y el timestamp: {tiempo} el cual corresponde a la fecha{str (datetime.timestamp(tiempo))}."
+    ts =  datetime.timestamp(tiempo)
+    return f"Se imprimio un .csv en la carpeta `Resultados`. La misma refiere  al dni: {dni} y el timestamp: {tiempo} el cual corresponde a la fecha{ts}."
 
 
 # Imprime en consola los resultados obtenidos.

@@ -165,11 +165,4 @@ Cual es el estado del cheque:
         else:
             print("Esa opcion no es correcta.")
 
-def fechaOrigen(obj):
-    print("Pendiente programar fechaOrigen")
-    obj["FechaOrigen"] ="Pendiente"
-
-def fechaPago(obj):
-    print("Pendiente programar fechaPago")
-    obj["FechaPago"] ="Pendiente"
 
