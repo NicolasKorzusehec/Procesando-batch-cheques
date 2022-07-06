@@ -1,5 +1,5 @@
 import csv
-
+from datetime import datetime
 from choices import *
 
 # Esta funcion guarda el archivo como csv en la variable archivoCheques para luego ser trabajada desde la misma
@@ -67,7 +67,8 @@ def salidaArchivo(resultados):
     contenido += "\n"
     for row in resultados:
         for key in row:
-            contenido += row[key] + ","
+            strValue = str(row[key])
+            contenido += strValue + ","
         contenido = contenido[:len(contenido)-1]
         contenido += "\n"
     srcOut = nombrandoArchivo(resultados)
@@ -79,18 +80,21 @@ def salidaArchivo(resultados):
 def nombrandoArchivo(results):
     dniUso = results[0]["DNI"]
     timest = timestampActual()
+    print (msgPosArchivo (dniUso, timest))
+    print (timest)
+
     nameArchivo = dniUso + "-" + timest + ".csv"
     print("El nombre del archivo es ", nameArchivo)
     path = "Resultados/" + nameArchivo
-    print(msgPosArchivo(dniUso,timest))
     return path
 
 def timestampActual():
-    print("Pendiente")
-    return "Pendiente"
+    dt = datetime.now() # Obtengo la fecha y hora actual.
+    ts = str (datetime.timestamp(dt)) #en funcion de esos datos obtengo el timestamp.
+    return ts
 
 def msgPosArchivo(dni, tiempo):
-    return f"Se imprimio un .csv en la carpeta resultados. La misma refiere  al dni: {dni} y el timestamp: {tiempo}."
+    return f"Se imprimio un .csv en la carpeta `Resultados`. La misma refiere  al dni: {dni} y el timestamp: {tiempo} el cual corresponde a la fecha{str (datetime.timestamp(tiempo))}."
 
 
 # Imprime en consola los resultados obtenidos.
