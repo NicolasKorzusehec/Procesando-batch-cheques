@@ -15,21 +15,47 @@ Acontinuacion se le solicitara informacion para filtrar un archivo csv y de esa 
 
 def buscarArchivo(obj):
     estado = False
-    print("""Ingrese el nombre del archivo a filtrar:
-    Ejemplo: longtest.csv (RECOMENDADA)
+    #print("""Ingrese el nombre del archivo a filtrar:
+    #Ejemplo: longtest.csv (RECOMENDADA)
+    #""")
+    print("""Seleccion el archivo a filtrar:
+    1 . longtest.csv (RECOMENDADA)
+    2 . shorttest.csv 
+    3 . Utilizar archivo propio
     """)
+    estado = False
     while estado != True:
-        try:
-            print(""">>> Se requiere colocar el archivo a verificar dentro de la carpeta src perteneciente al programa.""")
-            nombreArchivo = input()
-            file = open("src/"+nombreArchivo, "r")
-            file.close()
-            obj["archivo"] ="src/"+nombreArchivo
-            estado = True
-        except FileNotFoundError:
-            print ("""
-            No se ha encontrado el archivo. Vuelve a intentar.""")
-            continue
+        archivo = input("1, 2 o 3: ")
+        if archivo.isdigit():
+            if int(archivo) == 1:
+                src = "src/longtest.csv"
+                obj["archivo"] = src
+                estado = testSrc(src)
+            elif int(archivo) == 2:
+                src = "src/shorttest.csv"
+                obj["archivo"] = src
+                estado = testSrc(src)
+            elif int(archivo) == 3:
+                print("""Escribir unicamente el nombre del archivo con su extension. Ej.: `archivo.csv`
+    >>> Se requiere colocar el archivo a verificar dentro de la carpeta src perteneciente al programa.""")
+                src = "src/" + input()
+                obj["archivo"] = src
+                estado = testSrc(src)
+            else:
+                print("Esa opcion no es correcta.")
+        else:
+            print("Solo se aceptan enteros sin puntos, comas, ni espacios.")
+
+# Analiza si se puede aceptar la opcion de archivo planteada.
+def testSrc(path):
+    try:
+        file = open(path, "r")
+        file.close()
+        return True
+    except FileNotFoundError:
+        print ("""
+                No se ha encontrado el archivo. Puede que no este en la carpeta `src` del programa o bien, se haya eliminado. Vuelve a intentar.""")
+        return False
 
 def salida(obj):
     estado = False
