@@ -27,7 +27,8 @@ if __name__ == '__main__':
     readFile(archivoCheques, archivoOrigen)
     # print("EL archivo en bruto es ", archivoCheques)
 
-    # Itera en cada fila util del archivo a filtrar creando un objeto que se incluye en la lista 'objetoDatos' para trabajarla facilmente posteriormente.
+    # Itera en cada fila util del archivo a filtrar 
+    # creando un objeto que se incluye en la lista 'objetoDatos' para trabajarla facilmente posteriormente.
     crearDicc(archivoCheques, objDatos)
     # print ("El archivo util es ", objDatos)
 

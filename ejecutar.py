@@ -1,4 +1,4 @@
-import csv
+import csv, sys
 from datetime import datetime
 from choices import *
 
@@ -59,6 +59,9 @@ def output(results, obj):
 
 #Estructura que transforma los resultados en un estring, luego los incluye en un archio csv.
 def salidaArchivo(resultados):
+    if resultados == []:
+        print ("No hay transacciones con esas caracteristicas.")
+        return
     contenido = ""
     headerReference = resultados[0]
     for key in headerReference:
@@ -79,24 +82,16 @@ def salidaArchivo(resultados):
 
 def nombrandoArchivo(results):
     dniUso = results[0]["DNI"]
-    timest = timestampActual()
+    timest = str (int (datetime.now ().timestamp ()))
     print (msgPosArchivo (dniUso, timest))
-    print (timest)
-
+    #timest = "Pendiente"
     nameArchivo = dniUso + "-" + timest + ".csv"
     print("El nombre del archivo es ", nameArchivo)
     path = "Resultados/" + nameArchivo
     return path
 
-def timestampActual():
-    dt = datetime.now() # Obtengo la fecha y hora actual.
-    ts = str (datetime.timestamp(dt)) #en funcion de esos datos obtengo el timestamp.
-    return ts
-
 def msgPosArchivo(dni, tiempo):
-    ts =  datetime.timestamp(tiempo)
-    return f"Se imprimio un .csv en la carpeta `Resultados`. La misma refiere  al dni: {dni} y el timestamp: {tiempo} el cual corresponde a la fecha{ts}."
-
+    return f"Se imprimio un .csv en la carpeta `Resultados`. La misma refiere  al dni: {dni} y el timestamp: {tiempo}."
 
 # Imprime en consola los resultados obtenidos.
 def salidaPantalla(resultados):
