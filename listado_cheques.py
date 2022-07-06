@@ -17,7 +17,7 @@ resultados = [] # Lista de objetos ya filtrado y dispuesto para su salida
 
 if __name__ == '__main__':
     print ("""
->>> El programa ofrece una prueba con el archivo "test.csv" incluido""")
+>>> El programa ofrece una prueba con el archivo "shorttest.csv" y "longtest.csv" incluido""")
     
     buscarArchivo(archivoOrigen)
     

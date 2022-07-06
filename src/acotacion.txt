@@ -1,1 +1,6 @@
 Esta carpeta almacena todos los archivo csv que se utilizan como recurso para el programa.
+
+Para esta entrega se puede utilizar una version corta ("shortest.csv") o bien la prueba extendida y recomendada ("longtest.csv") 
+
+Esta version extendida fue creada en una tabla desde excel y exportada como csv. Surgio el problema de que se generaba con ";" como separador, por lo cual se creo el script "excelacsv.py" para solucionar este incoveniente de aca en adelante.
+

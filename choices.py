@@ -16,7 +16,7 @@ Acontinuacion se le solicitara informacion para filtrar un archivo csv y de esa 
 def buscarArchivo(obj):
     estado = False
     print("""Ingrese el nombre del archivo a filtrar:
-    Ejemplo: test.csv (disponible)""")
+    Ejemplo: longtest.csv (EN DESARROLLO)""")
     while estado != True:
         try:
             print(""">>> Se requiere colocar el archivo a verificar dentro de la carpeta src perteneciente al programa.""")
